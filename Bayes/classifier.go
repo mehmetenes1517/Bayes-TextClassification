@@ -9,6 +9,30 @@ import (
 	"unicode"
 )
 
+var filtered_words []string = []string{
+	"there",
+	"is",
+	"are",
+	"a",
+	"my",
+	"mine",
+	"what",
+	"someone",
+	"you",
+	"on",
+	"if",
+	"at",
+	"ever",
+	"never",
+	"just",
+	"but",
+	"to",
+	"then",
+	"whenever",
+	"also",
+	"ok",
+}
+
 func GetFiles(folder string) []string {
 	out, err := exec.Command("ls", folder).CombinedOutput()
 	if err != nil {
@@ -147,7 +171,16 @@ func ParseFile(file string) []string {
 				if len(token) >= 12 {
 					token = nil
 				} else {
-					tokenlist = append(tokenlist, strings.ToLower(string(token)))
+					found := false
+					for _, el := range filtered_words {
+						if strings.Compare(strings.ToLower(el), strings.ToLower(string(token))) == 0 {
+							found = true
+							break
+						}
+					}
+					if !found {
+						tokenlist = append(tokenlist, strings.ToLower(string(token)))
+					}
 					token = nil
 				}
 			}

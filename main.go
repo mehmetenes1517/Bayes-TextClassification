@@ -76,7 +76,6 @@ func main() {
 
 	//P(Class | Word)
 	// P(Word | Class) * P(Class) / P/(Word)
-
 	P_Crime_Word := bayes.P_Class_Word(P_Word_Crime, P_Crime, P_Word)
 	P_Entertainment_Word := bayes.P_Class_Word(P_Word_Entertainment, P_Entertainment, P_Word)
 	P_Politics_Word := bayes.P_Class_Word(P_Word_Politics, P_Politics, P_Word)
@@ -86,6 +85,7 @@ func main() {
 	/*
 
 		 P(C | W)  = P(W | C) * P(C) / P(W)
+
 
 		 P(C|W) -> probability of a class happening in all word set
 
